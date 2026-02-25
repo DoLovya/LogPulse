@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>translations/LogPulse_zh_CN.qm</file>
         <file>translations/LogPulse_en_US.qm</file>
+        <file>icons/close.svg</file>
+        <file>icons/close_hover.svg</file>
     </qresource>
 </RCC>
