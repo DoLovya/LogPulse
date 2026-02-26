@@ -1,9 +1,9 @@
-﻿#include "codeeditor.h"
+#include "codeeditor.h"
 #include <QPainter>
 #include <QTextBlock>
 #include <QEvent>
 
-CodeEditor::CodeEditor(QWidget* parent) : QPlainTextEdit(parent)
+CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 {
 	lineNumberArea = new LineNumberArea(this);
 
@@ -35,7 +35,7 @@ void CodeEditor::updateLineNumberAreaWidth(int /* newBlockCount */)
 	setViewportMargins(lineNumberAreaWidth(), 0, 0, 0);
 }
 
-void CodeEditor::updateLineNumberArea(const QRect& rect, int dy)
+void CodeEditor::updateLineNumberArea(const QRect &rect, int dy)
 {
 	if (dy)
 		lineNumberArea->scroll(0, dy);
@@ -46,7 +46,7 @@ void CodeEditor::updateLineNumberArea(const QRect& rect, int dy)
 		updateLineNumberAreaWidth(0);
 }
 
-void CodeEditor::changeEvent(QEvent* event)
+void CodeEditor::changeEvent(QEvent *event)
 {
 	QPlainTextEdit::changeEvent(event);
 	if (event->type() == QEvent::FontChange)
@@ -55,7 +55,7 @@ void CodeEditor::changeEvent(QEvent* event)
 	}
 }
 
-void CodeEditor::resizeEvent(QResizeEvent* e)
+void CodeEditor::resizeEvent(QResizeEvent *e)
 {
 	QPlainTextEdit::resizeEvent(e);
 
@@ -71,7 +71,7 @@ void CodeEditor::highlightCurrentLine()
 	{
 		QTextEdit::ExtraSelection selection;
 
-		QColor lineColor = QColor(Qt::yellow).lighter(160);
+		QColor lineColor = QColor("#2a2d2e");
 
 		selection.format.setBackground(lineColor);
 		selection.format.setProperty(QTextFormat::FullWidthSelection, true);
@@ -83,14 +83,14 @@ void CodeEditor::highlightCurrentLine()
 	setExtraSelections(extraSelections);
 }
 
-void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent* event)
+void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
 {
 	QPainter painter(lineNumberArea);
 	// Background color for line number area
-	painter.fillRect(event->rect(), QColor(240, 240, 240));
+	painter.fillRect(event->rect(), QColor("#1e1e1e"));
 
 	// Right border line
-	painter.setPen(QColor(220, 220, 220));
+	painter.setPen(QColor("#3e3e42"));
 	painter.drawLine(event->rect().topRight(), event->rect().bottomRight());
 
 	QTextBlock block = firstVisibleBlock();
@@ -104,10 +104,10 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent* event)
 		{
 			QString number = QString::number(blockNumber + 1);
 			// Text color
-			painter.setPen(QColor(120, 120, 120));
+			painter.setPen(QColor("#858585"));
 			// Add padding to the right (margin of 5 pixels)
 			painter.drawText(0, top, lineNumberArea->width() - 5, fontMetrics().height(),
-				Qt::AlignRight | Qt::AlignVCenter, number);
+							 Qt::AlignRight | Qt::AlignVCenter, number);
 		}
 
 		block = block.next();
