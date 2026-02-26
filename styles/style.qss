@@ -2,7 +2,6 @@
 QWidget {
     background-color: #282a36;
     color: #f8f8f2;
-    font-family: "Segoe UI", "Arial", sans-serif;
     font-size: 10pt;
 }
 
