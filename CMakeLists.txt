@@ -18,6 +18,8 @@ set(PROJECT_SOURCES
         mainwindow.h
         codeeditor.cpp
         codeeditor.h
+        settingsdialog.cpp
+        settingsdialog.h
 )
 
 set(PROJECT_RESOURCES
